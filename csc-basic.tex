@@ -1,0 +1,180 @@
+\documentclass[csc]{subfiles}
+\setcounter{section}{2}
+\begin{document}
+
+\section{Countable Second-Countable Spaces}
+
+A direct translation of the notion of topological base leads to the following definitions in \ACA.
+
+\begin{definition*}[\ACA]
+  A (countable) \emph{base} for a topology on a (countable) set \(X\) is a family \(\mathcal{U} = \seq{U_i}_{i \in I}\) of subsets of \(X\) with the following properties.
+  \begin{itemize}
+  \item For every \(x \in X\) there is some \(i \in I\) such that \(x \in U_i.\)
+  \item For all \(i,j \in I\) and \(x \in U_i \cap U_j\) there is a \(k \in I\) such that \(x \in U_k \subseteq U_i \cap U_j.\)
+  \end{itemize}
+
+  An \emph{open set} in the associated topology is a subset \(V\) of \(\csc{X}\) such that for every \(x \in V\) there is some \(i \in I\) such that \(x \in U_i \subseteq V.\)
+\end{definition*}
+
+\noindent
+As discussed in the introduction, the restriction to countable bases on a countable set is intrinsic to the setting of second-order arithmetic.
+
+\begin{theorem*}[\ACA]
+  Suppose \(\csc{X}\) is a csc space.
+  \begin{itemize}
+  \item \(X\) and \(\emptyset\) are open subsets of \(\csc{X}.\)
+  \item If \(V\) and \(W\) are open subsets of \(\csc{X}\) then \(V \cap W\) is also open.
+  \item If \(\seq{V_a}_{a \in A}\) is a family of open subsets of \(\csc{X}\) then \(\bigcup_{a \in A} V_a\) is also open.
+  \end{itemize}
+\end{theorem*}
+
+\noindent
+Since our families of sets are implicitly countable, the last statement appears to fall short of the usual requirement that ``an arbitrary union of opens is open.''
+However, this is not quite the case: even if \(\seq{V_a}_{a \in A}\) is a family of opens in the usual sense, each open is a union of basic opens \(V_a = \bigcup_{j \in J_a} U_j,\) thus \(\bigcup_{a \in A} V_a = \bigcup_{j \in J} U_j\) where \(J = \bigcup_{a \in A} J_a\) is a countable index set.
+Thus the preceding theorem does show that \(\bigcup_{a \in A} V_a\) is open, provided we can make sense of \(\seq{J_a}_{a \in A}\) and \(J = \bigcup_{a \in A} J_a.\)
+Whether these make sense depends on the amount of choice and comprehension available in context, i.e., on the precise subsystem of second-order arithmetic being used.
+Thus, the above theorem essentially shows that ``an arbitrary union of opens is open'' to the maximum extent possble in subsystems of second-order arithmetic extending \ACA.
+
+In \RCA, there are several additional difficulties.
+A fundamental problem is that the union of a countable family of sets is not necessarily a set.
+It makes more sense to define topologies in terms of \eset{s} since the union of a countable family of \eset{s} is always an \eset{}.
+Nevertheless, topologies with a countable base consisting of sets rather than \eset{s} arise naturally (e.g., countable ordered spaces are of this kind) and they sometimes have different properties.
+Thus the notion of topological base splits into ideas: weak bases and strong bases.
+
+Furthermore, the second requirement in the definition of topological bases is problematic since \(U_k \subseteq U_i \cap U_j\) is a \(\Pi^0_1\)-statement so we may not be able to effectively search for a suitble index \(k\) given \(x,i,j.\)
+For this reason, the appropriate definition in \RCA\ has an additional function which serves to effectively find an appropriate index \(k\) given \(x,i,j.\)
+
+\begin{definition}[\RCA]\label{D:Base}
+  A \emph{weak base} for a topology on a set \(X\) is an \eset{} family \(\mathcal{U} = \seq{U_i}_{i \in I}\) of \eset{s} contained in \(X\) together with a function \(k: X \times I \times I \to I\) such that the following two properties hold.
+  \begin{itemize}
+  \item If \(x \in X\) then \(x \in U_i\) for some \(i \in I.\)
+  \item If \(x \in U_i \cap U_j\) then \(x \in U_{k(x,i,j)} \subseteq U_i \cap U_j.\)
+  \end{itemize}
+  A \emph{strong base} is defined in the same way, except that \(\mathcal{U} = \seq{U_i}_{i \in I}\) is a set family rather than an \eset{} family.
+\end{definition}
+
+
+\begin{definition}[\RCA]\label{D:CSC}
+  A \emph{weak csc space} is a triple \(\csc{X}=(X,\mathcal{U},k)\) where \(\mathcal{U} = \seq{U_i}_{i \in I}\) and \(k: X \times I \times I \to I\) form a weak base for a topology on the set \(X.\)
+
+  Similarly, a \emph{strong csc space} is a triple \(\csc{X}=(X,\mathcal{U},k)\) where \(\mathcal{U}\) and \(k\) form a strong base for a topology on the set \(X.\)
+\end{definition}
+
+\noindent
+Note that the coding of set families and \eset{} families is substantially different, so it is not technically true that every strong csc space is a weak csc though it is straightforward to convert a strong base into an equivalent weak base.
+For the same reason, a weak csc space where each basic open \(U_i\) is equivalent to a set is not necessarily equivalent to a strong csc space since \(\mathcal{U}\) might not be equivalent to a set family.
+
+\begin{propositiondefinition}[\RCA]\label{P:EffOpen}\label{D:EffOpen}
+  Let \(\csc{X}\) be a \textup(weak or strong\textup) csc space with basis \(\mathcal{U}=\seq{U_i}_{i \in I}.\)
+  For a set or an \eset{} \(U \subseteq X,\) the following are equivalent:
+  \begin{itemize}
+  \item There is an \eset{} \(J \subseteq I\) such that \(U = \bigcup_{i \in J} U_j.\)
+  \item There is a \pfun{} \(n:X \to I\) such that if \(x \in U\) then \(n(x)\converges\) and \(x \in U_{n(x)} \subseteq U.\)
+  \end{itemize}
+  We then say that \(U\) is \emph{effectively open} in \((X,\mathcal{U},k).\)
+\end{propositiondefinition}
+
+\subsection*{Continuity}
+
+In \ACA, the usual global and local definitions of continuity are equivalent.
+
+\begin{theorem*}[\ACA]
+  Suppose \(\csc{X}\) and \(\csc{Y}\) are csc spaces with respective bases \(\mathcal{U}=\seq{U_i}_{i\in I}\) and \(\mathcal{V}=\seq{V_j}_{j \in J}.\)
+  Given a function \(f:X \to Y,\) the following are equivalent:
+  \begin{itemize}
+  \item If \(V\) is an open subset of \(Y\) then \(f^{-1}[V] = \set{x \in X: f(x) \in V}\) is an open subset of \(X.\)
+  \item If \(x \in X\) and \(j \in J\) are such that \(f(x) \in V_j\) then there is an index \(i \in I\) such that \(x \in U_i \subseteq f^{-1}[V_j].\)
+  \end{itemize}
+  We then say that \(f\) is a \emph{continuous} function from \(\csc{X}\) to \(\csc{Y}.\)
+\end{theorem*}
+
+\noindent
+While often considered more elegant, the first definition is considerably more complex in the context of second-order arithmetic.
+The second definition is more practical but it still poses problems in \RCA\ since \(U_i \subseteq f^{-1}[V_j]\) is \(\Pi^0_1\) which means that it may not be possible to effectively search for a suitable \(i\) given \(x,j\) and \(f.\)
+
+\begin{definition}[\RCA]\label{D:EffContinuous}
+  Let \(\csc{X}=(X,\seq{U_i}_{i\in I},k)\) and \(\csc{Y}=(Y,\seq{V_j}_{j\in J},\ell)\) be weak or strong csc spaces.
+  A function \(f:X \to Y\) is \emph{effectively continuous} if there is a \pfun{} \(\phi:X \times J \to I\) such that if \(f(x) \in V_j\) then \(\phi(x,j)\converges\) and \(x \in U_{\phi(x,j)} \subseteq f^{-1}[V_j].\)
+\end{definition}
+
+\noindent
+Using this definition, one can prove in \RCA\ that effectively continuous functions are continuous in the global sense as well.
+
+\begin{proposition}[\RCA]\label{P:EffContinuity}
+  Let \(\csc{X}=(X,\mathcal{U},k)\) and \(\csc{Y}=(Y,\mathcal{V},\ell)\) be (weak or strong) csc spaces and let \(f:X \to Y\) be an effectively continuous function.
+  If \(V\) is an effectively open subset of \(Y,\) then \(f^{-1}[V]\) is an effectively open subset of \(X.\)
+\end{proposition}
+
+\begin{comment}
+  Write \(\mathcal{U} = \seq{U_i}_{i \in I}\) and \(\mathcal{V} = \seq{V_j}_{j \in J}.\)
+  Let \(\phi:X \times J \to I\) witness that \(f:X \to Y\) is effectively continuous.
+  Given an \eset{} \(B \subseteq J,\) the \eset{} \[A = \set{\phi(x,j) \in I : f(x) \in U_j}\] is such that \(\bigcup_{i \in A} U_i = f^{-1}[\bigcup_{j \in B} V_j.\)
+\end{comment}
+
+In \ACA, a \emph{homeomorphism} between two csc spaces is defined in the usual manner as a bijection such that it and its inverse are continuous.
+
+\begin{definition}[\RCA]\label{D:Homeo}
+  Let \(\csc{X}=(X,\mathcal{U},k)\) and \(\csc{Y}=(Y,\mathcal{V},\ell)\) be two (weak or strong) csc spaces.
+  An \emph{effective homeomorphism} between \(\csc{X}\) and \(\csc{Y}\) is a bijection \(f:X \to Y\) such that both \(f\) and \(f^{-1}\) are effectively continuous.
+  We say that \(\csc{X}\) and \(\csc{Y}\) are \emph{effectively homeomorphic} if there is an effective homeomorphism between them.
+\end{definition}
+
+% \begin{definition}[\RCA]
+%   Let \(\mathcal{U},k\) and \(\mathcal{V},\ell\) be two countable bases on the set \(X.\)
+%   We say that \(\mathcal{U},k\) and \(\mathcal{V},\ell\) are \emph{effectively equivalent} if the identity function on \(X\) is an effective homeomorphism between \((X,\mathcal{U},k)\) and \((X,\mathcal{V},\ell).\)
+% \end{definition}
+
+% \noindent
+% This definition will be useful to identify when a property of a space is a topological property and not a property of the presentation of a space: truly topological properties should be invariant under effectively equivalent bases for the same topology.
+
+\subsection*{Subspaces, products and disjoint sums}
+
+\begin{definition}[\RCA]
+  Suppose \(\csc{X}=(X,\mathcal{U},k)\) is a csc space with \(\mathcal{U} = \seq{U_i}_{i \in I}.\) 
+  If \(X' \subseteq X\) then the corresponding \emph{subspace} \(\csc{X}'=(X',\mathcal{U}',k')\) is defined by \(U'_i = U_i \cap X'\) for all \(i \in I,\) and \(k' = k\res(X'\times I \times I).\)
+\end{definition}
+
+\begin{definition}[\RCA]
+  Suppose \(\csc{X}=(X,\mathcal{U},k)\) and \(\csc{Y}=(Y,\mathcal{V},\ell)\) are csc spaces with \(\mathcal{U} = \seq{U_i}_{i \in I}\) and \(\mathcal{V} = \seq{V_j}_{j \in J}.\)
+  The \emph{product space} \(\csc{X}\times\csc{Y}\) is the csc space \((X \times Y, \mathcal{W}, m),\) where \(\mathcal{W} = \seq{U_i \times V_j}_{\seq{i,j} \in I \times J}\) and \[m(\seq{x,y},\seq{i,j},\seq{i',j'}) = \seq{k(x,i,i'),\ell(y,j,j')}.\]
+\end{definition}
+
+\begin{definition}[\RCA]
+  Suppose \(\csc{X}=(X,\mathcal{U},k)\) and \(\csc{Y}=(Y,\mathcal{V},\ell)\) are csc spaces with \(\mathcal{U} = \seq{U_i}_{i \in I}\) and \(\mathcal{V} = \seq{V_j}_{j \in J}\) such that \(X \cap Y = \varnothing\) and \(I \cap J = \varnothing.\)
+  The \emph{sum space} \(\csc{X}+\csc{Y}\) is the csc space \((X \cup Y, \mathcal{W}, m),\) where \(\mathcal{W} = \seq{W_h}_{h \in I \cup J}\) and \(m:(X \cup Y)\times(I \cup J)\times(I \cup J) \to (I \cup J)\) are defined by \[W_h = \begin{cases} U_h & \text{when $h \in I$,} \\ V_h & \text{when $h \in J$,} \end{cases}\] and \[m(z,h_1,h_2) = \begin{cases} k(z,h_1,h_2) & \text{when $z \in X$ and $h_1,h_2 \in I$,} \\ \ell(z,h_1,h_2) & \text{when $z \in Y$ and $h_1,h_2 \in J$.} \end{cases}\]
+\end{definition}
+
+\subsection*{Subbases}
+
+A common way to construct a topological space is to specify a subbase for the topology.
+We will use this very often in this paper, so we introduce some formal notation for going from a subbase to a base for a csc space.
+If \(\mathcal{B} = \seq{B_i}_{i \in I}\) is an \eset{} family, each contained in a set \(X,\) then we write \(\mathcal{B}^* = \seq{B^*_s}_{s \in I^{[<\infty]}}\) by \(B^*_s = \bigcap_{i \in s} B_i,\) with the convention that \(B^*_\varnothing = X.\)
+Note that the family \(\mathcal{B}^*\) is easily definable by recursion on notation, so there is no trouble forming \(\mathcal{B}^*\) in models of \RCA\ and the outcome is an\eset{} family which is closed under finite intersections.
+In fact, if \(\mathcal{B}\) is a sequence of sets then \(\mathcal{B}^*\) is likewise a sequence of sets which is closed under finite intersections.
+This process can be used to construct bases out of subbasic sequences for both weak and strong csc spaces.
+
+\begin{proposition}[\RCA]\label{P:Subbase}
+  If \(\mathcal{B} = \seq{B_i}_{i \in I}\) is a sequence of \eset{s} \textup(resp.\ sets\textup), each contained in the set \(X,\) then \((X,\mathcal{B}^*,k^*)\) is a weak \textup(resp.\ strong\textup) csc space, where \(k^*:X \times I^{[<\infty]} \times I^{[<\infty]} \to I^{[<\infty]}\) is defined by \(k^*(x,s,t) = s \cup t.\)
+\end{proposition}
+
+Since we will be interested in studying compactness, we will often speak of finite covers of csc spaces.
+If \(\csc{X}=(X,\mathcal{U},k)\) is a weak or strong csc space and \(a\) is a finite set of indices, then \(X = \bigcup_{i \in a} U_i\) is a \(\Pi^0_1\) statement.
+In \RCA, we cannot always comprehend the collection of all finite index sets which correspond to finite covers.
+However, there are important classes of csc spaces (such as ordered spaces studied in Section~\ref{S:Ordered}) where this is always possible even in \RCA.
+It will therefore be useful to introduce some terminology to describe such siturations.
+
+\begin{definition}[\RCA]
+  A sequence \(\seq{U_i}_{i \in I}\) of sets or \eset{s} contained in \(X\) has a \emph{finite cover relation} if there exists a set \(C \subseteq I^{[<\infty]}\) such that \[\set{i_0,\dots,i_{\ell-1}} \in C \liff X = U_{i_0} \cup\cdots\cup U_{i_{\ell-1}}.\]
+\end{definition}
+
+\begin{lemma}[\RCA]\label{L:SubFiniteCover}
+  If \(\mathcal{B}\) is a sequence of subsets of \(X\) with a finite cover relation, then \(\mathcal{B}^*\) also has a finite cover relation.
+\end{lemma}
+
+\begin{proof}
+  Write \(\mathcal{B} = \seq{B_i}_{i \in I}\) and let \(C \subseteq I^{[<\infty]}\) be the finite cover relation for \(\mathcal{B}.\)
+  Define \(C^* \subseteq (I^{[<\infty]})^{[<\infty]}\) by \(\set{s_0,\dots,s_{\ell-1}} \in C^*\) if and only if \(\set{i_0,\dots,i_{\ell-1}} \in C\) for every \(\seq{i_0,\dots,i_{\ell-1}} \in s_0 \times\cdots\times s_{\ell-1}.\)
+  This is correct because \[\bigcup_{n=0}^{\ell-1} B^*_{s_n} = \bigcup_{n=0}^{\ell-1} \bigcap_{i \in s_n} B_i = \bigcap_{\seq{i_0,\dots,i_{\ell-1}} \in s_0\times\cdots\times s_{\ell-1}} \bigcup_{n=0}^{\ell-1} B_{i_n},\] with the usual convention that empty intersections equal \(X.\)
+\end{proof}
+
+\end{document}

@@ -1,0 +1,43 @@
+\documentclass[csc]{subfiles}
+\setcounter{section}{1}
+\begin{document}
+
+\section{Background}
+
+A standard reference for subsystems of second-order arithmetic and their use in reverse mathematics is Simpson~\cite{Simpson09}.
+Formal definitions and properties of the basic subsystems \RCA, \WKL, and \ACA\ can be found there.
+Due to the highly combinatorial nature of our subject matter, we will make use of several conventions throughout this paper.
+The goal of these conventions is to minimize the amount of arithmetical coding in the statement and proofs of our results.
+
+Finite sequences are coded using natural numbers in such a way that all the basic operations on finite sequences are primitive recursive.
+There are many ways to accomplish this; see Smory{\'n}ski~\cite{Smorynski77} for a detailed account.
+Since the details of this coding are immaterial, we will not impose one particular choice on the reader.
+
+We will use the notation \(X^{<\infty}\) to denote the set of all sequences of elements of the set \(X.\)
+The length of a sequence \(x\) will be denoted \(|x|.\)
+For a natural number \(n,\) we will write \(X^n\) for the subset of \(X^{<\infty}\) consisting of sequences of length \(n.\)
+We will write \(\seq{x_0,\dots,x_{\ell-1}}\) for the sequence of length \(\ell\) whose \(i\)-th element is \(x_{i-1}.\)
+
+\paragraph{\Fset{s}.}
+\Fset{s} are coded with finite sequences that enumerate them in increasing order.
+We will write \(X^{[<\infty]}\) for the set of all \fset{s} of elements of the set \(X.\)
+We will write \(\set{x_0,\dots,x_{\ell-1}}\) for the set whose elements are enumerated by the sequence \(\seq{x_0,\dots,x_{\ell-1}}\) (not necessarily in increasing order).
+
+We will handle \fset{s} as if they were plain sets.
+For example, we will write \(x \in a\) to abbreviate \((\exists i < |a|)(x = a_i)\) and we will write \(a \subseteq b\) to abbreviate \((\forall i < |a|)(\exists j < |b|)(a_i = b_j).\)
+We will freely take unions and intersections of \fset{s} since these are primitive recursive operations.
+
+\paragraph{\Eset{s}.}
+An \emph{\eset{}} is a nondecreasing sequence \(A = \seq{a_n}_{n=0}^\infty\) of \fset{s}.
+This sequence is intended to represent the union \(\bigcup_{n=0}^\infty a_n,\) which does not provably exist in \RCA.
+
+We will handle \eset{s} as if they were plain sets.
+For example, we will write \(x \in A\) to abbreviate \((\exists n)(x \in a_n)\) and we will write \(A \subseteq B\) to abbreviate \((\forall x)(x \in A \lthen x \in B).\) 
+We will also write \(A = B\) to abbreviate \((\forall x)(x \in A \liff x \in B)\) since the pointwise equality of the sequences \(A\) and \(B\) will never be relevant.
+We will freely take countable unions and finite intersections of \eset{s} since these can be described in a canonical way.
+
+Note that for every \(\Sigma^0_1\) formula \(\phi(x)\) there is an \eset{} \(A\) such that \((\forall x)(x \in A \liff \phi(x));\) we will abbreviate this by writing \(A = \set{x : \phi(x)}.\)
+In fact, we will often use set comprehension to define \eset{s}.
+In other words, we will write \(A = \set{x : \phi(x)}\) to abbreviate the routine process by which \(\phi(x)\) is used to construct a nondecreasing sequence \(A = \seq{a_n}_{n=0}^\infty\) of \fset{s} such that \((\exists n)(x \in a_n) \liff \phi(x).\)
+
+\end{document}

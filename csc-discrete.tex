@@ -1,0 +1,76 @@
+\documentclass[csc]{subfiles}
+\setcounter{section}{3}
+\begin{document}
+
+\newcommand{\disc}[1]{#1_{\mathbf{d}}}
+\section{Discrete Spaces}
+
+A topological space is \emph{discrete} if every singleton is open.
+Open singletons are necessarily basic, so a weak or strong csc space \(\csc{X}=(X,\mathcal{U},k)\) is discrete if for every \(x \in X,\) there is an index \(i\) such that \(U_i = \set{x}.\)
+Since \(U_i = \set{x}\) is a \(\Pi^0_1\) statement, there may be no effective way to obtain an such an index \(i\) from the point \(x.\)
+
+\begin{definition}[\RCA]\label{D:EffDiscrete}
+  A weak or strong csc space \(\csc{X}\) with basis \(\mathcal{U} = \seq{U_i}_{i \in I}\) is \emph{effectively discrete} if there is a function \(d:X \to I\) such that \(U_{d(x)} = \set{x}\) for every \(x \in X.\)
+\end{definition}
+
+\begin{theorem}[\RCA]\label{T:DiscreteMap}
+  Let \(\csc{X}\) be a weak or strong csc space.
+  The following are equivalent:
+  \begin{enumerate}[\upshape(1)]
+  \item \(\csc{X}\) is effectively discrete.
+  \item Every map from \(\csc{X}\) to a weak csc space is effectively continuous. 
+  \item Every map from \(\csc{X}\) to a strong csc space is effectively continuous.
+  \item The identity map \(\csc{X}\to\disc{X}\) is effectively continuous.
+  \end{enumerate}
+\end{theorem}
+
+\begin{proposition}[\RCA]\label{P:EffDiscreteIso}
+  Any two effectively discrete weak or strong csc spaces with the same size are effectively homeomorphic.
+\end{proposition}
+
+\begin{proposition}[\RCA]
+  Every discrete finite csc space is effectively discrete.
+\end{proposition}
+
+\begin{theorem}[\RCA]\label{T:Discrete}
+  The following are equivalent:
+  \begin{enumerate}[\upshape(1)]
+  \item Arithmetic Comprehension \textup(\ACA\textup).
+  \item Every infinite discrete weak csc space is effectively discrete.
+  \item Every infinite discrete strong csc space is effectively discrete.
+  \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+  The implications (1)\THEN(2)\THEN(3) are clear.
+
+  To see that (3)\THEN(1), we prove that the range of any injection \(f:\N\to\N\) is a set.
+  Given \(f,\) define \[\begin{aligned}
+      U_{\seq{x,0}} &= \set{2x+1} \\
+      U_{\seq{x,m+1}} &= \set{2x}\cup\set{2n+1 : n \geq m \land f(n) = x}.
+    \end{aligned}\]
+  Note that if \(f(n) = x\) and \(m \geq 1\) then \[U_{\seq{x,m}} = \begin{cases}
+      \set{2x,2n+1} & \text{if $m \leq n+1$,} \\
+      \set{2x} & \text{if $m > n+1$;}
+    \end{cases}\] and if \(x \notin \ran f\) then \(U_{\seq{x,m}} = \set{2x}\) for every \(m \geq 1.\)
+  It is immediate that \((\N,\seq{U_i : i \in \N\times\N},k)\) is a discrete strong csc space where \[\begin{aligned}
+      k(2x+1,\seq{x_0,m_0},\seq{x_1,m_1}) &= \seq{x,0}, \\
+      k(2x,\seq{x_0,m_0},\seq{x_1,m_1}) &= \seq{x,\max(m_0,m_1)}.
+    \end{aligned}\]
+
+  Suppose \(d:\N \to \N^2\) is such that \(U_{d(x)} = \set{x}\) for every \(x \in \N,\) then it must be that \(d(2x) = \seq{x,m}\) where \(m \geq 1\) is such that if \(f(n) = x\) then \(n + 1 < m.\) 
+  Therefore \[\ran f = \set{x \in \N : (\exists n < d(2x))(f(n) = x)}\] is a set.
+\end{proof}
+
+\begin{proposition}[\RCA]\label{P:SubDiscrete}
+  Every embedded subspace of an effectively discrete csc space is effectively discrete.
+\end{proposition}
+
+\begin{proof}
+  Suppose \(\csc{Y}\) is an effectively discrete csc space, as witnessed by the function \(d.\)
+  Suppose further that \(f:\csc{X}\to\csc{Y}\) is an effective embedding, as witnessed by the function \(\phi.\)
+  For every \(x \in X,\) we have \[x \in U_{\phi(x,d(f(x)))} \subseteq f^{-1}[U_{d(f(x))}] = f^{-1}[\{f(x)\}] = \set{x},\] thus \(U_{\phi(x,d(f(x)))} = \set{x}.\)
+\end{proof}
+
+\end{document}
+ 

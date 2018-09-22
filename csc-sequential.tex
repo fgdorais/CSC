@@ -1,0 +1,51 @@
+\documentclass[csc]{subfiles}
+\setcounter{section}{8}
+\begin{document}
+
+\section{Sequentially Compact Spaces}
+
+Let \((X,\mathcal{U},k)\) be a countable second-countable space.
+A point \(x \in X\) is said to be an \emph{accumulation point} of the sequence \(\seq{x_n}_{n=0}^\infty\) of points of \(X\) if the set \[\set{n \in \N : x_n \in V}\] is infinite for every basic open neighborhood \(V\) of \(x.\)
+The csc space \((X,\mathcal{U},k)\) is \emph{sequentially compact} if every sequence of points of \(X\) has an accumulation point.
+
+\begin{proposition}[\RCA]\label{P:SeqCompact>DCompact}
+  Every sequentially compact strong csc space is basically compact.
+\end{proposition}
+
+\begin{proof}
+  Suppose \(\seq{W_n}_{n=0}^\infty\) is a nondecreasing sequence of decidable open proper subsets of \(X.\)
+  Define \(x_n\) to be the first element of \(X \rem W_n.\)
+  Let \(x\) be an accumulation point of \(\seq{x_n}_{n=0}^\infty.\)
+  I claim that \(x \notin \bigcup_{n=0}^\infty W_n\) and therefore \(\seq{W_n}_{n=0}^\infty\) is not a cover of \(X.\)
+  Suppose instead that \(x \in W_{n_0}.\)
+  Note that \(x_n \notin W_{n_0}\) for all \(n \geq n_0,\) which is impossible since the set \(\set{n : x_n \in W_{n_0}}\) must be infinite for \(x\) to be an accumulation point of \(\seq{x_n}_{n=0}^\infty.\)
+\end{proof}
+
+\begin{theorem}[\RCA\ + \Bnd{\Sigma^0_2}]
+  The following are equivalent:
+  \begin{enumerate}[\upshape(1)]
+  \item Arithmetic comprehension \textup(\ACA\textup).
+  \item Every sequentially compact weak csc space is basically compact.
+  \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+  To see that $(2)\Rightarrow(1)$, we prove the contrapositive.
+  If arithmetic comprehension fails then, by Proposition~\ref{P:Simple}, there is a simple \eset{} \(S.\)
+  Let \(U_0 = S \cup \set0\) and, for \(x \geq 1,\) let \(U_{2x-1} = \{1,\ldots,x\}\) and \(U_{2x} = S \cap \set{1,\ldots,x}.\)
+  Then \((\N,\mathcal{U},k)\) is a weak csc space where \(k\) is defined in the obvious fashion.
+  This weak csc space has the property that \(U_0\) is the smallest open neighborhood of \(0\) and if \(x \notin S \cup \set0\) then \(U_{2x} = \set{1,\ldots,x}\) is the smallest open neghborhood of \(x.\)
+
+  On the one hand, \((\N,\mathcal{U},k)\) is not basically compact since there is no finite cover of \(\N\) using basic open sets.
+
+  On the other hand, \((\N,\mathcal{U},k)\) is sequentially compact.
+  Indeed, given a sequence \(\seq{x_n}_{n=0}^\infty,\) we have three cases:
+  \begin{itemize}
+  \item If \(\seq{x_n}_{n=0}^\infty\) is eventually \(0\) then \(0\) is an accumulation point.
+  \item If \(\seq{x_n}_{n=0}^\infty\) is bounded but not eventually \(0,\) then there is an \(x \notin S,\) \(x \geq 1,\) such that \(\set{n \in \N : 1 \leq x_n \leq x}\) is infinite and then \(x\) is an accumulation point.
+  \item If \(\seq{x_n}_{n=0}^\infty\) is unbounded the \eset{} \(\set{x_0,x_1,\ldots}\) is infinite and thus \(\set{n \in \N : x_n \in U_0}\) is infinite, which means that \(\set{n \in \N : x_n \in U_0}\) is infinite and hence \(0\) is an accumulation point.
+  \end{itemize}
+  Thus \((\N,\mathcal{U},k)\) is an example of a sequentially compact weak csc space which is not basically compact.
+\end{proof}
+
+\end{document}

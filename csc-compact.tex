@@ -1,0 +1,71 @@
+\documentclass[csc]{subfiles}
+\setcounter{section}{7}
+\begin{document}
+
+\section{Compact Spaces}
+
+For compactness of countable second-countable spaces, we would like to use the traditional definition: every open cover has a finite subcover.
+However, arbitrary open covers are third-order objects which are inaccessible to second-order arithmetic.
+On the one hand, since the spaces we are interested in are countable, it is reasonable to consider countable compactness: every countable open cover has a finite subcover.
+On the other hand, since the spaces we are interested in are second-countable, it is also reasonable to only consider covers using basic opens.
+Interestingly, these two reasonable approaches diverge in \RCA.
+
+\begin{definition}[\RCA]\label{D:Compact}
+  We say that the csc space \(\csc{X}\) is \emph{compact} if for every uniformly enumerable family \(\seq{W_n}_{n \in \N}\) of open \eset{s} such that \(X = \bigcup_{n \in \N} W_n\) there is an \(n_0 \in \N\) such that \(X = \bigcup_{n \leq n_0} W_n.\)
+\end{definition}
+
+\begin{proposition}[\RCA]\label{P:CompactImage}
+  Let \(\csc{X}\) and \(\csc{Y}\) be csc spaces.
+  If there is a continuous surjection \(f:\csc{X}\to\csc{Y}\) and \(\csc{X}\) is compact then \(\csc{Y}\) is also compact.
+\end{proposition}
+
+\begin{proposition}[\RCA]\label{P:CompactSubspace}
+  Let \(\csc{X}\) be a compact csc space.
+  If \(Y\) is a closed subset of \(\csc{X}\) then the subspace \(\csc{Y}\) is also compact.
+\end{proposition}
+
+In practice, it often suffices to consider basic open covers rather than more general open covers.
+Indeed, if \(\seq{W_n}_{n \in \N}\) is an open cover of the csc space \((X,\mathcal{U},k)\) then \(\seq{U_i}_{i \in A}\) is a basic open refinement where \[A = \set{ i \in I : (\exists n)(U_i \subseteq W_n)}.\]
+Unfortunately, the definition of \(A\) is \(\Sigma^0_2\) and therefore \(A\) may fail to be a set or even an \eset{} in subsystems of \ACA.
+
+\begin{definition}[\RCA]
+  Let \(\csc{X}\) be a csc space with basis \(\mathcal{U} = \seq{U_i}_{i \in I}.\)
+  We say that \((X,\mathcal{U},k)\) is \emph{basically compact} if for every \eset{} \(A \subseteq I\) such that \(X = \bigcup_{i \in A} U_i\) there is a \fset{} \(a \subseteq A\) such that \(X = \bigcup_{i \in a} U_i.\)
+\end{definition}
+
+\noindent
+A priori, basic compactness depends on the choice of base for the topology.
+However, it follows from the next proposition shows that basic compactness is invariant under effective homeomorphisms.
+
+\begin{proposition}[\RCA]\label{P:BCompactImage}
+  Let \(\csc{X}\) and \(\csc{Y}\) be csc spaces.
+  If there is an effectively continuous surjection \(f:\csc{X}\to\csc{Y}\) and \(\csc{X}\) is basically compact then \(\csc{Y}\) is basically compact too.
+\end{proposition}
+
+\begin{proof}
+  Let \(\mathcal{U} = \seq{U_i}_{i \in I}\) and \(\mathcal{V} = \seq{V_j}_{j \in J}\) be the respective bases of \(\csc{X}\) and \(\csc{Y},\) and let \(\phi:X \times J \to I\) witness the effective continuity of the surjective map \(f:X \to Y.\)
+  Given an \eset{} \(B \subseteq J\) such that \(Y = \bigcup_{j \in B} V_j,\) consider the \eset{} \[A = \set{\phi(x,j) : j \in B \land f(x) \in V_j}.\]
+  Note that \(X = \bigcup_{i \in A} U_i.\)
+  Since \((X,\mathcal{U},k)\) is basically compact, there is a \fset{} \(a \subseteq A\) such that \(X = \bigcup_{i \in a} U_i.\)
+  By definition of \(A,\) there is a \fset{} \(b \subseteq B\) such that \[a \subseteq \set{\phi(x,j) : j \in b \land f(x) \in V_j}.\]
+  We claim that \(Y = \bigcup_{j \in b} V_j.\)
+  Given \(y_0 \in Y,\) first find \(x_0 \in X\) such that \(f(x_0) = y_0\) and then find \(i \in a\) such that \(x_0 \in U_i.\)
+  Note that \(i = \phi(x',j)\) for some \(j \in b\) and some \(x \in X\) such that \(f(x) \in V_j.\)
+  By definition of \(\phi,\) we then have \(U_i \subseteq f^{-1}[V_j]\) which means that \(y_0 = f(x_0) \in V_j.\)
+\end{proof}
+
+\begin{proposition}[\RCA]\label{P:BCompactSubspace}
+  Let \(\csc{X}\) be a basically compact csc space.
+  If \(Y\) is an effectively closed subset of \(X\) then the subspace \(\csc{Y}\) is also basically compact.
+\end{proposition}
+
+\begin{proof}
+  Let \(\mathcal{U} = \seq{U_i}_{i \in I}\) be the basis of \(\csc{X}.\)
+  Say, \(A_1 \subseteq I\) is an \eset{} such that \(X \rem Y = \bigcup_{i \in A_1} U_i.\)
+  
+  Given an \eset{} \(A_0 \subseteq I\) such that \(Y \subseteq \bigcup_{i \in A_0} U_i,\) we have \(X = \bigcup_{i \in A_0 \cup A_1} U_i.\) 
+  Since \((X,\mathcal{U},k)\) is compact, there is a \fset{} \(a \subseteq A_0 \cup A_1\) such that \(X = \bigcup_{i \in a} U_i.\)
+  Since \(Y \cap U_i = \varnothing\) for every \(i \in A_1,\) we necessarily have \(Y \subseteq \bigcup_{i \in a_0} U_i\) where \(a_0 = a \cap A_0.\)
+\end{proof}
+
+\end{document}

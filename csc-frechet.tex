@@ -1,0 +1,35 @@
+\documentclass[csc]{subfiles}
+\setcounter{section}{4}
+\begin{document}
+
+\section{Fr\'echet Spaces}
+
+A topological space is \emph{Fr{\'e}chet} (or \T1) if every singleton is closed.
+Equivalently, if \(x\) and \(y\) are two distinct points in a Fr{\'e}chet space then there is a basic open \(U_i\) that contains \(y\) but not \(x.\)
+In a weak csc space, \(x \notin U_i\) is a \(\Pi^0_1\) statement, there may be no effective way such an index \(i\) from the pair of points \(x,y.\)
+
+\begin{definition}[\RCA]
+  A csc space \(\csc{X}\) with basis \(\mathcal{U}=\seq{U_i}_{i \in I}\) is \emph{effectively Fr{\'e}chet} if there is a function \(h:X \times X \to I\) such that if \(x \neq y\) then \(x \notin U_{h(x,y)}\) and \(y \in U_{h(x,y)}.\)
+\end{definition}
+
+In  a strong csc space, both \(x \notin U_i\) and \(y \in U_i\) are decidable, so we can simply search for a suitable index \(i.\)
+
+\begin{proposition}[\RCA]
+  Every strong csc space which is Fr{\'e}chet is effectively Fr{\'e}chet.
+\end{proposition}
+
+\begin{theorem}[\RCA]
+  The following are equivalent:
+  \begin{enumerate}[\upshape(1)]
+  \item Arithmetic Comprehension \textup(\ACA\textup).
+  \item Every weak csc space which is Fr{\'e}chet is effectively Fr{\'e}chet.
+  \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+  The implication (1)\THEN(2) is immediate, so we show how to construct a Fr{\'e}chet space which is not effectively Fr{\'e}chet from a failure of \ACA.
+
+  \TODO
+\end{proof}
+
+\end{document}

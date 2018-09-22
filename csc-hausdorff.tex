@@ -1,0 +1,74 @@
+\documentclass[csc]{subfiles}
+\setcounter{section}{6}
+\begin{document}
+
+\section{Hausdorff Spaces}
+
+A topological space is \emph{Hausdorff} (or \T2) if any two distinct points in the space have disjoint open neighborhoods.
+Of course, we may require both of these neighborhoods to be basic, so a csc space \(\csc{X} = (X,\seq{U_i}_{i \in I},k)\) is Hausdorff if for any \(x_0,x_1 \in X,\) if \(x_0 \neq x_1\) then there are indices \(i_0,i_1 \in I\) such that \(x_0 \in U_{i_0},\) \(x_1 \in U_{i_1}\) and \(U_{i_0} \cap U_{i_1} = \varnothing.\)
+Since \(U_{i_0} \cap U_{i_1} = \varnothing\) is a \(\Pi^0_1\) statement, there may be no effective way to get two such indices \(i_0,i_1\) from the pair of points \(x_0,x_1.\)
+
+
+\begin{definition}[\RCA]
+  A csc space \(\csc{X}\) with basis \(\mathcal{U}=\seq{U_i}_{i\in I}\) is \emph{effectively Hausdorff} if there are functions \(h_0,h_1:X \times X \to I\) such that if \(x_0 \neq x_1\) then \(x_0 \in U_{h_0(x_0,x_1)},\) \(x_1 \in U_{h_1(x_0,x_1)}\) and \(U_{h_0(x_0,x_1)} \cap U_{h_1(x_0,x_1)} = \varnothing.\)
+\end{definition}
+
+\noindent
+The following gives an elegant characterization of effectively Hausdorff csc spaces.
+
+\begin{proposition}[\RCA]\label{P:HausdorffDiagonal}
+  A weak or strong csc space \(\csc{X}\) is effectively Hausdorff if and only if the diagonal is effectively closed in the product space \(\csc{X}\times\csc{X}.\)
+\end{proposition}
+
+\begin{proof}
+  Write \(\csc{X} = (X,\seq{U_i}_{i\in I},k).\)
+  Suppose that \(A \subseteq I \times I\) is an \eset{} such that \[\set{\seq{x_0,x_1} \in X\times X : x_0 \neq x_1} = {\textstyle\bigcup_{\seq{i_0,i_1} \in A} U_{i_0} \times U_{i_1}}.\]
+  Note that we necessarily have \(U_{i_0} \cap U_{i_1} = \varnothing\) for all \(\seq{i_0,i_1} \in A.\)
+  Given distinct \(x_0,x_1 \in X,\) we can search through \(A\) for a pair \(\seq{i_0,i_1}\) such that \(\seq{x_0,x_1} \in U_{i_0}\times U_{i_1}.\) 
+  Since \(U_{i_0}\times U_{i_1}\) does not intersect the diagonal, we must have \(U_{i_0} \cap U_{i_1} = \varnothing.\)
+  So if we define \(\seq{h_0(x_0,x_1),h_1(x_0,x_1)}\) to be the outcome of this search when \(x_0 \neq x_1\) (and arbitrarily when \(x_0 = x_1\)) then \(h_0,h_1:X \times X \to I\) witness that \((X,\mathcal{U},k)\) is effectively Hausdorff.
+
+  Conversely, suppose that \(h_0,h_1: X\times X \to I\) witness that \((X,\mathcal{U},k)\) is effectively Hausdorff.
+  Then \[\set{\seq{x_0,x_1} \in X \times X : x_0 \neq x_1} = {\textstyle\bigcup_{\seq{i_0,i_1} \in A} U_{i_0}\times U_{i_1}},\] where \(A\) is the \eset{} \[A = \set{\seq{h_0(x_0,x_1),h_1(x_0,x_1)} : \seq{x_0,x_1} \in X \times X \land x_0 \neq x_1}.\qedhere\]
+\end{proof}
+
+\begin{theorem}[\RCA]\label{T:Hausdorff}
+  The following are equivalent.
+  \begin{enumerate}[\upshape(1)]
+  \item Arithmetic Comprehension \textup(\ACA\textup).
+  \item Every Hausdorff weak csc space is effectively Hausdorff.
+  \item Every Hausdorff strong csc space is effectively Hausdorff.
+  \item Every discrete strong csc space is effectively Hausdorff.
+  \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+  The implications (1)\THEN(2)\THEN(3)\THEN(4) are clear. 
+
+  To see that (4)\THEN(1), given an injection \(f:\N\to\N\) we construct a discrete strong csc space \(\csc{X}\) such that if \(\csc{X}\) is effectively Hausdorff then the range of \(f\) is a set.
+
+  For convenience, assume that \(f(0) = 0\) and \(f(1)=1.\) 
+  Let \(X = \set{x \in \N : x > 0}.\)
+  Given \(\seq{a,b} \in \N^2\) define \[U_{\seq{a,b}} = \set{x \in X : f(a) < f(x) < f(b)}.\]
+  Consider the strong csc space \(\csc{X} = (X,\seq{U_{\seq{a,b}}}_{\seq{a,b} \in \N^2},k)\) where \[k(x,\seq{a_0,b_0},\seq{a_1,b_1}) = \begin{cases}
+      \seq{a_0,b_0} & \text{if $f(a_0) \geq f(a_1)$ and $f(b_0) \leq f(b_1)$,} \\
+      \seq{a_0,b_1} & \text{if $f(a_0) \geq f(a_1)$ and $f(b_0) > f(b_1)$,} \\
+      \seq{a_1,b_0} & \text{if $f(a_0) < f(a_1)$ and $f(b_0) \leq f(b_1)$,} \\
+      \seq{a_1,b_1} & \text{if $f(a_0) < f(a_1)$ and $f(b_0) > f(b_1)$.} \\
+    \end{cases}\]
+  This is a discrete space for if \(x \in X\) and \[\begin{aligned}
+      f(a) &= \max\set{z \in \ran f : z < f(x)}, &
+      f(b) &= \min\set{z \in \ran f : z > f(x)},
+    \end{aligned}\] then \(U_{\seq{a,b}} = \set{x}.\)
+  
+  Suppose that \(h_0,h_1\) witness that \(\csc{X}\) is effectively Hausdorff.
+  To determine whether \(z > 0\) is in the range of \(f,\) try to find a pair \(\seq{x_0,x_1} \in X^2\) such that \(f(x_0) \leq z < f(x_1),\) and \(h_0(x_0,x_1) = \seq{a,x_1},\) \(h_1(x_0,x_1) = \seq{x_0,b}\) for some \(a,b \in \N.\)
+  Since \(U_{\seq{a,x_1}} \cap U_{\seq{x_0,b}} = \varnothing,\) there is no \(x\) such that \(f(x_0) < f(x) < f(x_1).\) 
+  Thus, given such \(\seq{x_0,x_1},\) \(z \in \ran f\) if and only if \(z = f(x_0).\)
+  Such a pair \(\seq{x_0,x_1}\) must exist since there is a unique pair \(\seq{x_0,x_1}\) with \[\begin{aligned}
+      f(x_0) &= \max\set{y \in \ran f : y \leq z}, &
+      f(x_1) &= \min\set{y \in \ran f : y > z},
+    \end{aligned}\] is as required.
+\end{proof}
+
+\end{document}
